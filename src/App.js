@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 
-import HomePage from "./pages/homepage";
-import HatsPage from "./pages/hats";
+import HomePage from "./pages/HomePage";
+import CollectionsPage from "./pages/CollectionsPage";
 
 function App() {
   return (
@@ -9,8 +9,8 @@ function App() {
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route path="/hats">
-        <HatsPage />
+      <Route exact path="/collections">
+        <CollectionsPage />
       </Route>
     </Switch>
   );

@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import MenuItem from "../components/menu-item"
-import Directory from "../components/directory"
+import CollectionCardList from "../components/CollectionCardList";
 
 const Wrapper = styled.div`
   display: flex;
@@ -9,12 +8,11 @@ const Wrapper = styled.div`
   padding: 20px 80px;
 `;
 
-export default function HomePage(props) {
-  console.log(props)
+export default function HomePage() {
   return (
     <Wrapper>
-      <h1>Cool Shop</h1>
-      <Directory />
+      <h1>The React Store</h1>
+      <CollectionCardList />
     </Wrapper>
   );
 }

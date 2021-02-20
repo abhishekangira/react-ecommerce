@@ -10,9 +10,14 @@ const Wrapper = styled.div`
   overflow: hidden;
   height: 240px;
   ${(props) =>
-    props.size &&
+    props.size === "large" &&
     css`
       height: 380px;
+    `}
+  ${(props) =>
+    props.size === "xlarge" &&
+    css`
+      min-width: 60vw;
     `}
   &:before {
     content: "";
@@ -58,7 +63,7 @@ const Subtitle = styled.div`
   font-size: 16px;
 `;
 
-export default function MenuItem({ title, imageUrl, size}) {
+export default function CollectionCard({ title, imageUrl, size }) {
   return (
     <Wrapper backgroundImage={imageUrl} size={size}>
       <Content>
