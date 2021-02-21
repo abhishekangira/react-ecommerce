@@ -15,8 +15,13 @@ const Link = styled(UnstyledLink)`
   font-size: 20px;
 `;
 
-const Title = styled.h1`
-  margin-left: 80px;
+const Left = styled.div`
+display: flex;
+align-items: center;
+`;
+
+const Right = styled.div`
+
 `;
 
 export default function Header() {
@@ -27,20 +32,41 @@ export default function Header() {
     case "/collections":
       title = "All Collections";
       break;
+    case "/loginregister":
+      title = "Login or Register";
+      break;
+    case "/collections/hats":
+      title = "Hats";
+      break;
+    case "/collections/jackets":
+      title = "Jackets";
+      break;
+    case "/collections/sneakers":
+      title = "Sneakers";
+      break;
+    case "/collections/womens":
+      title = "Womens";
+      break;
+    case "/collections/mens":
+      title = "Mens";
+      break;
     default:
       title = "The Soul Store";
   }
 
   return (
     <Nav>
-      <Link to="/">
-        <Logo />
-      </Link>
-      <Title>{title}</Title>
-      <div>
+      <Left>
+        <Link to="/">
+          <Logo />
+        </Link>
+        <h1>{title}</h1>
+      </Left>
+      <Right>
         <Link to="/collections">All Collections</Link>
+        <Link to="/loginregister">Login or Register</Link>
         <Link to="/">Contact</Link>
-      </div>
+      </Right>
     </Nav>
   );
 }
