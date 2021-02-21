@@ -2,9 +2,12 @@ import { Route, Switch } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import CollectionsPage from "./pages/CollectionsPage";
+import Header from "./components/Header";
 
-function App() {
+export default function App() {
   return (
+    <>
+    <Header />
     <Switch>
       <Route exact path="/">
         <HomePage />
@@ -13,7 +16,6 @@ function App() {
         <CollectionsPage />
       </Route>
     </Switch>
+    </>
   );
 }
-
-export default App;

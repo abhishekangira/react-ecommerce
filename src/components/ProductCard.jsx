@@ -3,17 +3,20 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 20px;
+  margin-right: 25px;
+  flex: 1 1 auto;
+  min-width: 20%;
 `;
 
 const Image = styled.img`
-  max-height: 95%;
+  height: 85%;
 `;
 
 const Details = styled.div`
   display: flex;
-  height: 5%;
+  height: 15%;
   justify-content: space-between;
+  font-size: 1.2rem;
 `;
 
 export default function ProductCard({ name, price, imageUrl }) {
@@ -21,8 +24,8 @@ export default function ProductCard({ name, price, imageUrl }) {
     <Wrapper>
       <Image src={imageUrl} />
       <Details>
-        <h4>{name}</h4>
-        <h4>${price}</h4>
+        <p>{name}</p>
+        <p>${price}</p>
       </Details>
     </Wrapper>
   );

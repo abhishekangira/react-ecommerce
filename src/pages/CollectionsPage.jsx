@@ -7,12 +7,15 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 80px;
+  & h1 {
+    text-align: center;
+  }
 `;
 
 export default function HomePage() {
   return (
     <Wrapper>
-      <h1 style={{ textAlign: "center" }}>All Collections</h1>
+      <h1>All Collections</h1>
       {CollectionsArray.map(({ id, ...otherProps }) => (
         <CollectionPreview key={id} {...otherProps} />
       ))}

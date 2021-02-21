@@ -13,10 +13,8 @@ const Wrapper = styled.div`
 `;
 
 const Link = styled(UnstyledLink)`
-  text-decoration: none;
   flex: 1 1 auto;
   min-width: 30%;
-  color: inherit;
 `;
 
 export default function CollectionCardList() {

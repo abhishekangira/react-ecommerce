@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 
 const Wrapper = styled.div`
   display: flex;
+  margin-bottom: 50px;
 `;
 
 export default function CollectionPreview({ title, items }) {
@@ -10,9 +11,9 @@ export default function CollectionPreview({ title, items }) {
     <>
       <h2>{title}</h2>
       <Wrapper>
-        {items.map(({ id, ...otherProps }) => (
-          <ProductCard key={id} {...otherProps} />
-        ))}
+        {items.map(
+          ({ id, ...otherProps }, index) => index < 4 && <ProductCard key={id} {...otherProps} />
+        )}
       </Wrapper>
     </>
   );
