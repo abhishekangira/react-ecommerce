@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CollectionCardList from "../components/CollectionCardList";
+import CollectionList from "../components/CollectionList";
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,9 +12,8 @@ const Wrapper = styled.div`
 
 export default function HomePage() {
   return (
-    <Wrapper>
-      <h1>The Soul Store</h1>
-      <CollectionCardList />
+    <Wrapper className="fade">
+      <CollectionList />
     </Wrapper>
   );
 }

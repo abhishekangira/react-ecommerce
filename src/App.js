@@ -7,15 +7,15 @@ import Header from "./components/Header";
 export default function App() {
   return (
     <>
-    <Header />
-    <Switch>
-      <Route exact path="/">
-        <HomePage />
-      </Route>
-      <Route exact path="/collections">
-        <CollectionsPage />
-      </Route>
-    </Switch>
+      <Header />
+      <Switch>
+        <Route exact path="/">
+            <HomePage />
+        </Route>
+        <Route exact path="/collections">
+            <CollectionsPage />
+        </Route>
+      </Switch>
     </>
   );
 }

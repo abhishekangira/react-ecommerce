@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CollectionPreview from "../components/CollectionPreview";
+import ProductList from "../components/ProductList";
 
 import CollectionsArray from "../data/items-data";
 
@@ -7,17 +7,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 80px;
-  & h1 {
-    text-align: center;
-  }
 `;
 
-export default function HomePage() {
+export default function CollectionsPage() {
   return (
-    <Wrapper>
-      <h1>All Collections</h1>
+    <Wrapper className="fade">
       {CollectionsArray.map(({ id, ...otherProps }) => (
-        <CollectionPreview key={id} {...otherProps} />
+        <ProductList key={id} {...otherProps} />
       ))}
     </Wrapper>
   );

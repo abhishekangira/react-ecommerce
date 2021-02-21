@@ -17,7 +17,7 @@ const Link = styled(UnstyledLink)`
   min-width: 30%;
 `;
 
-export default function CollectionCardList() {
+export default function CollectionList() {
   return (
     <Wrapper>
       {MENU_DATA.map((data) => (
