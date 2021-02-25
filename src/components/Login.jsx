@@ -1,5 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
+import GoTrue from "gotrue-js";
+
+import FormInput from './FormInput'
+
+const auth = new GoTrue({
+  APIUrl: "https://soulstore.netlify.app/.netlify/identity",
+  setCookie: false,
+});
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,15 +25,7 @@ const Form = styled.form`
   justify-content: space-around;
   margin: 2rem 0;
   width: 65%;
-  input {
-    height: 3rem;
-    border: none;
-    border-bottom: 2px solid #cecece;
-    outline: none;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    font-weight: bold;
-  }
+
   div {
     display: flex;
     justify-content: space-between;
@@ -51,21 +51,37 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    auth
+      .signup(email, password)
+      .then((response) => console.log("Confirmation email sent", response))
+      .catch((error) => console.log("It's an error", error));
     setEmail("");
     setPassword("");
   };
 
-  const handleChange = ({value}, setter) => {
-    setter(value)
-  }
+  const handleChange = ({ target }, setter) => {
+    setter(target.value);
+  };
 
   return (
     <Wrapper>
       <h2>I have an existing account</h2>
       <h3>Sign in with your email and password</h3>
       <Form onSubmit={handleSubmit}>
-        <input type="email" value={email} onChange={(e) => handleChange(e, setEmail)} placeholder="Email" />
-        <input type="password" value={password} onChange={(e) => handleChange(e, setPassword)} placeholder="Password" />
+        <FormInput
+          name="email"
+          type="email"
+          label="Email"
+          value={email}
+          onChange={(e) => handleChange(e, setEmail)}
+        />
+        <FormInput
+          name="password"
+          type="password"
+          label="Password"
+          value={password}
+          onChange={(e) => handleChange(e, setPassword)}
+        />
         <div>
           <button type="submit">Sign In</button>
           <button>Sign In with google</button>
