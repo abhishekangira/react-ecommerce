@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ProductList from "../components/ProductList";
 
-import CollectionsArray from "../data/items-data";
+import CollectionsArray from "../data/products-data";
 
 const Wrapper = styled.div`
   display: flex;

@@ -33,7 +33,7 @@ export default [
   },
   {
     title: "All Collections",
-    imageUrl: "https://i.ibb.co/7SKpGrS/bg.jpg",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fweknowyourdreams.com%2Fimages%2Fclothing%2Fclothing-13.jpg&f=1&nofb=1",
     size: "xlarge",
     id: 6,
     linkUrl: "collections",
