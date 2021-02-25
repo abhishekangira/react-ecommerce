@@ -54,6 +54,8 @@ export default function Header() {
       title = "The Soul Store";
   }
 
+  document.title = `The Soul Store - ${title === 'The Soul Store' ? 'Home' : title}`
+
   return (
     <Nav>
       <Left>
