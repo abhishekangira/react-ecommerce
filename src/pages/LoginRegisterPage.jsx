@@ -12,11 +12,11 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function LoginRegisterPage() {
+export default function LoginRegisterPage({setCurrentUser}) {
   return (
     <Wrapper className="fade">
-      <Login />
-      <Register />
+      <Login setCurrentUser={setCurrentUser} />
+      <Register setCurrentUser={setCurrentUser} />
     </Wrapper>
   );
 }

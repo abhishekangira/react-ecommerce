@@ -1,13 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import GoTrue from "gotrue-js";
-
+import auth from "../auth";
 import FormInput from "./FormInput";
-
-const auth = new GoTrue({
-  APIUrl: "https://soulstore.netlify.app/.netlify/identity",
-  setCookie: false,
-});
 
 const Wrapper = styled.div`
   display: flex;
@@ -45,18 +39,21 @@ const Form = styled.form`
   }
 `;
 
-export default function Login() {
+export default function Login({ setCurrentUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    auth
-      .login(email, password, true)
-      .then((response) => {
-        console.log(`Success! Response: ${JSON.stringify({ response })}`);
-      })
-      .catch((error) => console.log(`Failed :( ${JSON.stringify(error)}`));
+
+    try {
+      let loginResponse = await auth.login(email, password, true);
+      setCurrentUser(auth.currentUser());
+      console.log("Logged In", loginResponse);
+    } catch (e) {
+      console.error(e);
+    }
+
     setEmail("");
     setPassword("");
   };
@@ -65,8 +62,9 @@ export default function Login() {
     setter(target.value);
   };
 
-  const handleExternalLogin = () => {
-    const url = auth.loginExternalUrl('google')
+  const handleExternalLogin = (e) => {
+    e.preventDefault();
+    const url = auth.loginExternalUrl("google");
     window.location.href = url;
   };
 
@@ -81,6 +79,7 @@ export default function Login() {
           label="Email"
           value={email}
           onChange={(e) => handleChange(e, setEmail)}
+          required
         />
         <FormInput
           name="password"
@@ -88,6 +87,7 @@ export default function Login() {
           label="Password"
           value={password}
           onChange={(e) => handleChange(e, setPassword)}
+          required
         />
         <div>
           <button type="submit">Sign In</button>

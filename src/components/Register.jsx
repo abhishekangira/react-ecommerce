@@ -1,13 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import GoTrue from "gotrue-js";
+import auth from "../auth";
 
 import FormInput from "./FormInput";
-
-const auth = new GoTrue({
-  APIUrl: "https://soulstore.netlify.app/.netlify/identity",
-  setCookie: false,
-});
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,9 +32,8 @@ const Form = styled.form`
   }
 `;
 
-console.log(auth.currentUser()?.email);
 
-export default function Register() {
+export default function Register({setCurrentUser}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,11 +43,11 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      let registerResponse = await auth.signup(email, password);
+      let registerResponse = await auth.signup(email, password, { full_name: name });
       console.log("Confirmation email sent", registerResponse);
       let loginResponse = await auth.login(email, password, true);
+      setCurrentUser(auth.currentUser())
       console.log("Logged In", loginResponse);
-      auth.currentUser().update({ name });
     } catch (e) {
       console.error(e);
     }
@@ -78,6 +72,7 @@ export default function Register() {
           label="Name"
           value={name}
           onChange={(e) => handleChange(e, setName)}
+          required
         />
         <FormInput
           name="email"
@@ -85,6 +80,7 @@ export default function Register() {
           label="Email"
           value={email}
           onChange={(e) => handleChange(e, setEmail)}
+          required
         />
         <FormInput
           name="password"
@@ -92,6 +88,7 @@ export default function Register() {
           label="Password"
           value={password}
           onChange={(e) => handleChange(e, setPassword)}
+          required
         />
         <FormInput
           name="confirmPassword"
@@ -99,6 +96,7 @@ export default function Register() {
           label="Confirm Password"
           value={confirmPassword}
           onChange={(e) => handleChange(e, setConfirmPassword)}
+          required
         />
         <button type="submit">Sign Up</button>
       </Form>
