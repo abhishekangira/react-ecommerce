@@ -1,3 +1,4 @@
+import {useRef} from 'react'
 import styled, { css } from "styled-components";
 
 const Wrapper = styled.div`
@@ -8,7 +9,7 @@ const Wrapper = styled.div`
     margin-top: 1rem;
     font-size: 1rem;
     letter-spacing: 1px;
-    width: 10%;
+    width: auto;
     font-weight: bold;
     color: #8b8b8b;
     position: absolute;
@@ -39,10 +40,11 @@ const Wrapper = styled.div`
 `;
 
 export default function FormInput({ name, label, ...otherProps }) {
+  let focusRef = useRef(null)
   return (
     <Wrapper value={otherProps.value}>
-      <input {...otherProps} />
-      <label htmlFor={name}>{label}</label>
+      <input ref={focusRef} {...otherProps} />
+      <label htmlFor={name} onClick={() => focusRef.current.focus()}>{label}</label>
     </Wrapper>
   );
 }

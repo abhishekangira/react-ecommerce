@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import GoTrue from "gotrue-js";
 
-import FormInput from './FormInput'
+import FormInput from "./FormInput";
 
 const auth = new GoTrue({
   APIUrl: "https://soulstore.netlify.app/.netlify/identity",
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  min-height: 16rem;
+  height: 16rem;
   justify-content: space-around;
   margin: 2rem 0;
   width: 65%;
@@ -52,15 +52,22 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     auth
-      .signup(email, password)
-      .then((response) => console.log("Confirmation email sent", response))
-      .catch((error) => console.log("It's an error", error));
+      .login(email, password, true)
+      .then((response) => {
+        console.log(`Success! Response: ${JSON.stringify({ response })}`);
+      })
+      .catch((error) => console.log(`Failed :( ${JSON.stringify(error)}`));
     setEmail("");
     setPassword("");
   };
 
   const handleChange = ({ target }, setter) => {
     setter(target.value);
+  };
+
+  const handleExternalLogin = () => {
+    const url = auth.loginExternalUrl('google')
+    window.location.href = url;
   };
 
   return (
@@ -84,7 +91,7 @@ export default function Login() {
         />
         <div>
           <button type="submit">Sign In</button>
-          <button>Sign In with google</button>
+          <button onClick={handleExternalLogin}>Sign In with google</button>
         </div>
       </Form>
     </Wrapper>
