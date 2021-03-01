@@ -11,6 +11,12 @@ const StyledButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
   height: 3.5rem;
+  transition: background-color .3s ease;
+  &:hover {
+    color: #000;
+    background-color: white;
+    border: 3px solid black;
+  }
 `;
 
 export default forwardRef(({ children, loading, ...otherProps }, ref) => {

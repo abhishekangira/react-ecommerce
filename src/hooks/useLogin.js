@@ -8,12 +8,13 @@ export default function useLogin(email, password, setCurrentUser) {
       let loginResponse = await auth.login(email, password, true);
       setCurrentUser(auth.currentUser());
       console.log("Logged In");
-      history.push("/");
       if(cb) cb();
+      history.push("/");
       return loginResponse;
     } catch (e) {
       console.error(e);
-      return e;
+      if(cb) cb();
+      return 'Invalid Email/Password';
     }
   };
 }
