@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
-import styled, { css } from "styled-components";
-import LoadingWave from "@bit/ngoue.playground.loading-wave";
+import styled from "styled-components";
+// import LoadingWave from "@bit/ngoue.playground.loading-wave";
+import LoadingWave from "./loading-wave/dist/index";
 
 const StyledButton = styled.button`
   padding: 0.8rem 2rem;

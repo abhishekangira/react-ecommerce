@@ -94,7 +94,7 @@ export default function FormBuilder(props) {
               label={input.label}
               value={input.value}
               onChange={(e) => handleChange(e, input.setter)}
-              required
+              required={input.required}
             />
           ))}
         {props.buttons &&
