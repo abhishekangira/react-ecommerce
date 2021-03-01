@@ -89,6 +89,7 @@ export default function FormBuilder(props) {
         {props.inputs &&
           Object.values(props.inputs).map((input) => (
             <FormInput
+              key={input.name}
               name={input.name}
               type={input.type}
               label={input.label}
@@ -98,8 +99,8 @@ export default function FormBuilder(props) {
             />
           ))}
         {props.buttons &&
-          props.buttons.map((button) => (
-            <Button ref={buttonRef} loading={loading} type="submit">
+          props.buttons.map((button, index) => (
+            <Button key={button + index} ref={buttonRef} loading={loading} type="submit">
               {button}
             </Button>
           ))}
