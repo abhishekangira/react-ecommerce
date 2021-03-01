@@ -7,6 +7,9 @@ import HomePage from "./pages/HomePage";
 import CollectionsPage from "./pages/CollectionsPage";
 import LoginRegisterPage from "./pages/LoginRegisterPage";
 
+const url = new URL(window.location.href);
+
+console.log(url.hash)
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(auth.currentUser())

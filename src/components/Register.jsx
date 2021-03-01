@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
 import auth from "../auth";
+import useLogin from "../hooks/useLogin";
+import Button from "./Button";
 
 import FormInput from "./FormInput";
 
@@ -32,29 +34,33 @@ const Form = styled.form`
   }
 `;
 
-
-export default function Register({setCurrentUser}) {
+export default function Register({ setCurrentUser }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState("false");
+
+  const login = useLogin(email, password, setCurrentUser);
+  const ref = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (password === confirmPassword) {
+      setLoading("true");
 
-    try {
-      let registerResponse = await auth.signup(email, password, { full_name: name });
-      console.log("Confirmation email sent", registerResponse);
-      let loginResponse = await auth.login(email, password, true);
-      setCurrentUser(auth.currentUser())
-      console.log("Logged In", loginResponse);
-    } catch (e) {
-      console.error(e);
+      try {
+        let registerResponse = await auth.signup(email, password, { full_name: name });
+        console.log("Confirmation email sent", registerResponse);
+      } catch (e) {
+        console.error(e);
+      }
+
+      login();
+    } else {
+      ref.current.innerText = "Passwords Mismatch";
+      setTimeout(() => ref.current.innerText = "Sign Up", 2000)
     }
-
-    setName("");
-    setEmail("");
-    setPassword("");
   };
 
   const handleChange = ({ target }, setter) => {
@@ -65,7 +71,10 @@ export default function Register({setCurrentUser}) {
     <Wrapper>
       <h2>I have an existing account</h2>
       <h3>Sign in with your email and password</h3>
-      <Form onSubmit={handleSubmit}>
+      <Form
+        onKeyDown={(e) => (e.key === "Enter" ? ref.current.click() : null)}
+        onSubmit={(e) => handleSubmit(e, ref)}
+      >
         <FormInput
           name="name"
           type="text"
@@ -98,7 +107,9 @@ export default function Register({setCurrentUser}) {
           onChange={(e) => handleChange(e, setConfirmPassword)}
           required
         />
-        <button type="submit">Sign Up</button>
+        <Button ref={ref} loading={loading} type="submit">
+          Sign In
+        </Button>
       </Form>
     </Wrapper>
   );

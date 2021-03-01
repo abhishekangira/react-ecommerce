@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@bit/ngoue.playground.loading-wave": "file:./components/loading-wave"
+  }
+}

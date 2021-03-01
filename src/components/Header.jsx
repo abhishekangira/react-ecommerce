@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link as UnstyledLink, useLocation } from "react-router-dom";
+import { Link , useLocation } from "react-router-dom";
 import { ReactComponent as Logo } from "../crown.svg";
 import auth from "../auth";
 
@@ -9,25 +9,24 @@ const Nav = styled.nav`
   align-items: center;
   padding: 30px 30px;
   box-shadow: 0 2px 15px #a3a3a3;
-`;
-
-const Link = styled(UnstyledLink)`
-  margin-right: 20px;
-  font-size: 20px;
+  h1 {
+    margin-left: 1.5rem;
+  }
 `;
 
 const Left = styled.div`
   display: flex;
   align-items: center;
-  h3 {
-    margin-left: 1rem;
-  }
 `;
 
-const Right = styled.div``;
-
-const Logout = styled.span`
+const Right = styled.div`
   font-size: 20px;
+  * {
+    margin-right: 20px;
+  }
+  span:first-child {
+    font-weight: bold;
+  }
 `;
 
 export default function Header({ currentUser, setCurrentUser }) {
@@ -69,14 +68,16 @@ export default function Header({ currentUser, setCurrentUser }) {
           <Logo />
         </Link>
         <h1>{title}</h1>
-        <h3>{currentUser && `Hi ${currentUser.user_metadata.full_name || currentUser.email}`}</h3>
       </Left>
       <Right>
+        <span>
+          {currentUser && `Hi ${currentUser.user_metadata?.full_name || currentUser.email}`}
+        </span>
         <Link to="/collections">All Collections</Link>
         {!currentUser && <Link to="/loginregister">Login or Register</Link>}
         <Link to="/">Contact</Link>
         {currentUser && (
-          <Logout
+          <span
             style={{ cursor: "pointer" }}
             onClick={() => {
               auth.currentUser().logout();
@@ -84,7 +85,7 @@ export default function Header({ currentUser, setCurrentUser }) {
             }}
           >
             Logout
-          </Logout>
+          </span>
         )}
       </Right>
     </Nav>
