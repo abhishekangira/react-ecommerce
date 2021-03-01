@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link , useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as Logo } from "../crown.svg";
 import auth from "../auth";
 

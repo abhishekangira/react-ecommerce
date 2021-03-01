@@ -9,11 +9,11 @@ export default function useLogin(email, password, setCurrentUser) {
       setCurrentUser(auth.currentUser());
       console.log("Logged In");
       history.push("/");
+      if(cb) cb();
       return loginResponse;
     } catch (e) {
       console.error(e);
       return e;
     }
-    cb();
   };
 }

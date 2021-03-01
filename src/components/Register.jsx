@@ -42,7 +42,7 @@ export default function Register({ setCurrentUser }) {
   const [loading, setLoading] = useState("false");
 
   const login = useLogin(email, password, setCurrentUser);
-  const ref = useRef();
+  const buttonRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,8 +58,8 @@ export default function Register({ setCurrentUser }) {
 
       login();
     } else {
-      ref.current.innerText = "Passwords Mismatch";
-      setTimeout(() => ref.current.innerText = "Sign Up", 2000)
+      buttonRef.current.innerText = "Passwords Mismatch";
+      setTimeout(() => (buttonRef.current.innerText = "Sign Up"), 2000);
     }
   };
 
@@ -72,8 +72,13 @@ export default function Register({ setCurrentUser }) {
       <h2>I have an existing account</h2>
       <h3>Sign in with your email and password</h3>
       <Form
-        onKeyDown={(e) => (e.key === "Enter" ? ref.current.click() : null)}
-        onSubmit={(e) => handleSubmit(e, ref)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            buttonRef.current.click();
+          }
+        }}
+        onSubmit={(e) => handleSubmit(e, buttonRef)}
       >
         <FormInput
           name="name"
@@ -107,7 +112,7 @@ export default function Register({ setCurrentUser }) {
           onChange={(e) => handleChange(e, setConfirmPassword)}
           required
         />
-        <Button ref={ref} loading={loading} type="submit">
+        <Button ref={buttonRef} loading={loading} type="submit">
           Sign In
         </Button>
       </Form>
