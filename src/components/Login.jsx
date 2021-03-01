@@ -29,7 +29,7 @@ export default function Login({ setCurrentUser }) {
   const [password, setPassword] = useState("");
   const login = useLogin(email, password, setCurrentUser);
   const [loading, setLoading] = useState("false");
-  const ref = useRef();
+  const buttonRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,7 +52,12 @@ export default function Login({ setCurrentUser }) {
       <h2>I have an existing account</h2>
       <h3>Sign in with your email and password</h3>
       <Form
-        onKeyDown={(e) => (e.key === "Enter" ? ref.current.click() : null)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            buttonRef.current.click();
+          }
+        }}
         onSubmit={handleSubmit}
       >
         <FormInput
@@ -71,7 +76,7 @@ export default function Login({ setCurrentUser }) {
           onChange={(e) => handleChange(e, setPassword)}
           required
         />
-        <Button ref={ref} loading={loading} type="submit">
+        <Button ref={buttonRef} loading={loading} type="submit">
           Sign In
         </Button>
         {/* <button onClick={handleExternalLogin}>Sign In with google</button> */}
