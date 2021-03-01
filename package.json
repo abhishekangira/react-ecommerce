@@ -13,7 +13,7 @@
     "react-scripts": "4.0.2",
     "styled-components": "^5.2.1",
     "web-vitals": "^1.1.0",
-    "@bit/ngoue.playground.loading-wave": "file:./components/loading-wave"
+    "@bit/ngoue.playground.loading-wave": "file:./src/components/loading-wave"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,12 +39,10 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "node-sass": "^5.0.0"
-  },
+  "devDependencies": {},
   "bit": {
     "env": {},
-    "componentsDefaultDirectory": "components/{name}",
+    "componentsDefaultDirectory": "src/components/{name}",
     "packageManager": "npm"
   }
 }
