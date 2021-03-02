@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import FormBuilder from "./FormBuilder";
 
 export default function Login({ setCurrentUser }) {
@@ -9,7 +9,7 @@ export default function Login({ setCurrentUser }) {
     type: "login", // login or register
     title: "I have an existing account",
     subtitle: "Welcome back buddy",
-    setCurrentUser: setCurrentUser,
+    setCurrentUser,
     inputs: {
       email: {
         name: "email",

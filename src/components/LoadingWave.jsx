@@ -44,7 +44,6 @@ const MiddleFinger = styled.span`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 5px;
   text-align: center;
 `;
 
