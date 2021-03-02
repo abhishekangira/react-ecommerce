@@ -8,8 +8,8 @@ export default function Login({ setCurrentUser }) {
   const props = {
     type: "login", // login or register
     title: "I have an existing account",
-    subtitle: "Welcome back buddy",
-    setCurrentUser: setCurrentUser,
+    subtitle: "Welcome back buddy boy",
+    setCurrentUser,
     inputs: {
       email: {
         name: "email",
