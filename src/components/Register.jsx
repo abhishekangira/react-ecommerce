@@ -11,7 +11,7 @@ export default function Login({ setCurrentUser }) {
     type: "register", // login or register
     title: "I don't have an existing account",
     subtitle: "Sign up now, you wont regret it",
-    setCurrentUser: setCurrentUser,
+    setCurrentUser,
     inputs: {
       name: {
         name: "name",
