@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.1",
+    "firebase": "^8.2.9",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -17,7 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "fire": "react-scripts build && firebase deploy"
+    "fire": "react-scripts build && firebase deploy",
+    "firetest": "react-scripts build && firebase hosting:channel:deploy"
   },
   "eslintConfig": {
     "extends": [
