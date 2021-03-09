@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { auth } from "./firebase/utils";
+import { auth, createUserDocument } from "./firebase/utils";
 import "./App.scss";
 
 import HomePage from "./pages/homepage/homepage.component";
@@ -16,21 +16,32 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
-      console.log(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserDocument(userAuth)
+        userRef.onSnapshot(snapshot => {
+          this.setState({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data()
+            }
+          })
+        })
+      } else {
+        this.setState({ currentUser: userAuth })
+      }
     });
   }
 
   componentWillUnmount() {
     this.unsubscribeFromAuth()
   }
-  
+
 
   render() {
     return (
       <div>
-        <Header username={this.state.currentUser?.displayName}/>
+        <Header username={this.state.currentUser?.displayName} />
         <div className="page">
           <Switch>
             <Route exact path="/" component={HomePage} />

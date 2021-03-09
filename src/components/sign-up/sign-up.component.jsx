@@ -4,18 +4,20 @@ import { signInWithGoogle } from "../../firebase/utils";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
-import "./sign-in.styles.scss";
+import "./sign-up.styles.scss";
 
-class SignIn extends React.Component {
+class SignUp extends React.Component {
   state = {
     email: "",
     password: "",
+    name: "",
+    confirmPassword: "",
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.setState({ email: "", password: "" });
+    this.setState({ email: "", password: "", name: "" });
   };
 
   handleChange = (event) => {
@@ -26,11 +28,19 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <div className="sign-in">
-        <h2>I already have an account</h2>
-        <span>Glad to have you back buddy!</span>
+      <div className="sign-up">
+        <h2>I don't have an account</h2>
+        <span>No worries, just register now or use sign in with google!</span>
 
         <form onSubmit={this.handleSubmit}>
+          <FormInput
+            name="name"
+            type="name"
+            handleChange={this.handleChange}
+            value={this.state.name}
+            label="Full Name"
+            required
+          />
           <FormInput
             name="email"
             type="email"
@@ -47,11 +57,16 @@ class SignIn extends React.Component {
             label="Password"
             required
           />
-          <div className="buttons-sign-in">
-            <CustomButton type="submit"> Sign in </CustomButton>
-            <CustomButton type="button" google onClick={signInWithGoogle}>
-              Sign in with Google
-            </CustomButton>
+          <FormInput
+            name="confirmPassword"
+            type="confirmPassword"
+            value={this.state.confirmPassword}
+            handleChange={this.handleChange}
+            label="Confirm Password"
+            required
+          />
+          <div className="buttons-sign-up">
+            <CustomButton type="submit"> Sign Up </CustomButton>
           </div>
         </form>
       </div>
@@ -59,4 +74,4 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+export default SignUp;

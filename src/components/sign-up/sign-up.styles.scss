@@ -1,14 +1,18 @@
-.sign-in {
+.sign-up {
   width: 40%;
   display: flex;
   flex-direction: column;
   font-size: 1.7rem;
-  h2, span {
+  h2,
+  span {
     text-align: center;
   }
 }
 
-.buttons-sign-in {
+.buttons-sign-up {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  button {
+    width: 50%;
+  }
 }
