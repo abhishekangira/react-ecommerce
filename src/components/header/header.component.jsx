@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/utils";
+import { connect } from "react-redux";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
@@ -8,7 +9,12 @@ import "./header.styles.scss";
 
 class Header extends React.Component {
   render() {
-    const { displayName } = this.props;
+    let displayName = null;
+    if (this.props.currentUser && this.props.currentUser !== "not set")
+      displayName = this.props.currentUser.displayName;
+    else if (this.props.currentUser === "not set") {
+      displayName = "not set";
+    }
     return (
       <div className="header">
         <Link className="logo-container" to="/">
@@ -24,7 +30,7 @@ class Header extends React.Component {
               CONTACT
             </Link>
             {displayName ? (
-              <Link className="option" onClick={() => auth.signOut()}>
+              <Link className="option" to="#" onClick={() => auth.signOut()}>
                 SIGN OUT
               </Link>
             ) : (
@@ -39,4 +45,6 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => ({ currentUser: state.user.currentUser });
+
+export default connect(mapStateToProps)(Header);

@@ -55,13 +55,13 @@ class SignIn extends React.Component {
             required
           />
           <div className="buttons-sign-in">
-            <CustomButton type="submit" loading={this.state.loading1}>
+            <CustomButton type="submit" loading={this.state.loading1.toString()}>
               Sign in
             </CustomButton>
             <CustomButton
               type="button"
-              google
-              loading={this.state.loading2}
+              google="true"
+              loading={this.state.loading2.toString()}
               onClick={() => {
                 this.setState({ loading2: true });
                 signInWithGoogle();
