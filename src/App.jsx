@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import { auth, createUserDocument } from "./firebase/utils";
 import "./App.scss";
 
@@ -10,7 +10,7 @@ import Header from "./components/header/header.component";
 
 class App extends React.Component {
   state = {
-    currentUser: null,
+    currentUser: "not set",
   };
 
   unsubscribeFromAuth = null;
@@ -18,30 +18,35 @@ class App extends React.Component {
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
-        const userRef = await createUserDocument(userAuth)
-        userRef.onSnapshot(snapshot => {
+        const userRef = await createUserDocument(userAuth);
+        userRef.onSnapshot((snapshot) => {
           this.setState({
             currentUser: {
               id: snapshot.id,
-              ...snapshot.data()
-            }
-          })
-        })
+              ...snapshot.data(),
+            },
+          });
+        });
       } else {
-        this.setState({ currentUser: userAuth })
+        this.setState({ currentUser: userAuth });
       }
+      if (this.props.location.pathname === "/signin") this.props.history.push("/");
     });
   }
 
   componentWillUnmount() {
-    this.unsubscribeFromAuth()
+    this.unsubscribeFromAuth();
   }
 
-
   render() {
+    let displayName;
+    if (this.state.currentUser !== "not set" && this.state.currentUser !== null)
+      displayName = this.state.currentUser.displayName;
+    else if (this.state.currentUser === "not set") displayName = "not set";
+
     return (
       <div>
-        <Header username={this.state.currentUser?.displayName} />
+        <Header displayName={displayName} />
         <div className="page">
           <Switch>
             <Route exact path="/" component={HomePage} />
@@ -54,4 +59,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);
