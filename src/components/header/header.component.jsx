@@ -10,12 +10,12 @@ class Header extends React.Component {
   render() {
     const { displayName } = this.props;
     return (
-      <div className="header fade">
+      <div className="header">
         <Link className="logo-container" to="/">
           <Logo className="logo" />
         </Link>
         {displayName !== "not set" && (
-          <div className="options">
+          <div className="options fade">
             {displayName && <span>Hi {displayName}!</span>}
             <Link className="option" to="/shop">
               SHOP

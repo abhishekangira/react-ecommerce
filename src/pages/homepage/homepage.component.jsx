@@ -5,7 +5,7 @@ import Directory from '../../components/directory/directory.component';
 import './homepage.styles.scss';
 
 const HomePage = (props) => (
-  <div className='homepage'>
+  <div className='homepage fade'>
     <Directory />
   </div>
 );
