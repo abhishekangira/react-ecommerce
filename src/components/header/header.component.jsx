@@ -10,9 +10,9 @@ import "./header.styles.scss";
 class Header extends React.Component {
   render() {
     let displayName = null;
-    if (this.props.currentUser && this.props.currentUser !== "not set")
+    if (this.props.currentUser)
       displayName = this.props.currentUser.displayName;
-    else if (this.props.currentUser === "not set") {
+    else if (this.props.currentUser === "") {
       displayName = "not set";
     }
     return (
