@@ -1,7 +1,7 @@
 import styled, { keyframes, css } from "styled-components";
 
 const COLORS = {
-  primary: "white",
+  primary: "#dbe096",
   secondary: "#ec008c",
   tertiary: "#00b6ed",
 };

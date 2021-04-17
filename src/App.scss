@@ -1,3 +1,13 @@
+.wrapper {
+  position: relative;
+}
+
+.loader {
+  width: 100%;
+  position: absolute;
+  top: 40%;
+}
+
 .page {
   padding: 0 4rem;
 }

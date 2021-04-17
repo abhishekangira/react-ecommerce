@@ -4,14 +4,15 @@ import { auth } from "../../firebase/utils";
 import { connect } from "react-redux";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
+import CartIcon from "../cart-icon/cart-icon.component";
 
 import "./header.styles.scss";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 class Header extends React.Component {
   render() {
     let displayName = null;
-    if (this.props.currentUser)
-      displayName = this.props.currentUser.displayName;
+    if (this.props.currentUser) displayName = this.props.currentUser.displayName;
     else if (this.props.currentUser === "") {
       displayName = "not set";
     }
@@ -38,6 +39,14 @@ class Header extends React.Component {
                 SIGN IN {displayName}
               </Link>
             )}
+            <div className="option">
+              <CartIcon />
+            </div>
+          </div>
+        )}
+        {this.props.cartDropdownVisible && (
+          <div className="cart-dropdown-container fade">
+            <CartDropdown />
           </div>
         )}
       </div>
@@ -45,6 +54,9 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ currentUser: state.user.currentUser });
+const mapStateToProps = ({user: {currentUser}, cart: {cartDropdownVisible}}) => ({
+  currentUser: currentUser,
+  cartDropdownVisible: cartDropdownVisible,
+});
 
 export default connect(mapStateToProps)(Header);

@@ -30,4 +30,11 @@
       margin-left: 2rem;
     }
   }
+
+  .cart-dropdown-container {
+    position: absolute;
+    top: 8rem;
+    right: 2rem;
+    z-index: 1;
+  }
 }

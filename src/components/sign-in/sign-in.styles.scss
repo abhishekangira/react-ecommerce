@@ -1,5 +1,6 @@
 .sign-in {
-  width: 40%;
+  flex-grow: 1;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   font-size: 1.7rem;

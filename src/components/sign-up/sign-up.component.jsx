@@ -82,7 +82,7 @@ class SignUp extends React.Component {
             required
           />
           <div className="buttons-sign-up">
-            <CustomButton type="submit" loading={this.state.loading.toString()}>
+            <CustomButton type="submit" loading={this.state.loading}>
               {this.state.passwordMismatch ? "passwords mismatch" : "Sign Up"}
             </CustomButton>
           </div>
