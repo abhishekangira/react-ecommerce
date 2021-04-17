@@ -12,7 +12,7 @@ class SignUp extends React.Component {
     email: "",
     password: "",
     confirmPassword: "",
-    loading: false,
+    loading: 0,
     passwordMismatch: false,
   };
 
@@ -26,13 +26,13 @@ class SignUp extends React.Component {
       }, 2000);
       return;
     }
-    this.setState({ loading: true });
+    this.setState({ loading: 1 });
     try {
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
       await createUserDocument(user, { displayName });
     } catch (error) {
       console.error(error);
-      this.setState({ loading: false });
+      this.setState({ loading: 0 });
     }
   };
 

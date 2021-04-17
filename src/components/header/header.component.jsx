@@ -40,12 +40,12 @@ class Header extends React.Component {
               </Link>
             )}
             <div className="option">
-              <CartIcon />
+              <CartIcon/>
             </div>
           </div>
         )}
         {this.props.cartDropdownVisible && (
-          <div className="cart-dropdown-container fade">
+          <div className="cart-dropdown-container">
             <CartDropdown />
           </div>
         )}
@@ -54,9 +54,10 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = ({user: {currentUser}, cart: {cartDropdownVisible}}) => ({
+const mapStateToProps = ({user: {currentUser}, cart: {cartDropdownVisible, cartItems}}) => ({
   currentUser: currentUser,
   cartDropdownVisible: cartDropdownVisible,
+  cartItems
 });
 
 export default connect(mapStateToProps)(Header);

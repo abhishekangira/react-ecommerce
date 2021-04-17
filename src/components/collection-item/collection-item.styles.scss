@@ -1,17 +1,36 @@
 .collection-item {
+  position: relative;
   width: 22%;
   display: flex;
   flex-direction: column;
   height: 350px;
   align-items: center;
 
-  .image {
+  .collection-item-image {
     width: 100%;
     height: 95%;
-    background-size: cover;
-    background-position: center;
+    object-fit: cover;
+    object-position: center;
     margin-bottom: 5px;
   }
+
+  .custom-button {
+    position: absolute;
+    bottom: 3rem;
+    display: none;
+    height: 4rem;
+  }
+
+  &:hover {
+    .collection-item-image {
+      opacity: .6;
+    }
+    .custom-button {
+      display: block;
+    }
+  }
+
+
 
   .collection-footer {
     width: 100%;

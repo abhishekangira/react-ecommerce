@@ -6,12 +6,6 @@ const COLORS = {
   tertiary: "#00b6ed",
 };
 
-const SpinnerWrapper = styled.div`
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%)
-`;
 const BounceDelay = keyframes`
   0%,
   80%,
@@ -64,14 +58,14 @@ const Spinner = styled.div`
 
 const Loader = (props) => {
   return (
-    <SpinnerWrapper>
+    <div>
       <Spinner {...props}>
         <span />
         <span />
         <span />
       </Spinner>
       {props.children}
-    </SpinnerWrapper>
+    </div>
   );
 };
 

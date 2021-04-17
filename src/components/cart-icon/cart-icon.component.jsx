@@ -5,11 +5,12 @@ import {toggleCartDropdownVisibility} from "../../redux/cart/cart.actions";
 
 import "./cart-icon.styles.scss";
 
-function CartIcon({ toggleCartDropdownVisibility }) {
+function CartIcon({ toggleCartDropdownVisibility, cartItems }) {
+  const quantity = Object.values(cartItems).reduce((acc, val) => acc + +val, 0)
   return (
     <div className="cart-icon" onClick={toggleCartDropdownVisibility}>
       <CartIconLogo className="cart-icon-logo" />
-      <span className="cart-icon-quantity">6</span>
+      <span className="cart-icon-quantity">{quantity}</span>
     </div>
   );
 }
@@ -18,4 +19,6 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartDropdownVisibility: () => dispatch(toggleCartDropdownVisibility()),
 });
 
-export default connect(null, mapDispatchToProps)(CartIcon);
+const mapStateToProps = ({cart: {cartItems}}) => ({cartItems});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

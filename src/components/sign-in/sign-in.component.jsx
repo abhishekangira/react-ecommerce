@@ -10,19 +10,19 @@ class SignIn extends React.Component {
   state = {
     email: "",
     password: "",
-    loading1: false,
-    loading2: false,
+    loading1: 0,
+    loading2: 0,
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
     const { email, password } = this.state;
-    this.setState({ loading1: true });
+    this.setState({ loading1: 1 });
     try {
       await auth.signInWithEmailAndPassword(email, password); // returns {user}
     } catch (error) {
       console.error(error);
-      this.setState({ loading1: false });
+      this.setState({ loading1: 0 });
     }
   };
 
@@ -59,11 +59,11 @@ class SignIn extends React.Component {
               Sign in
             </CustomButton>
             <CustomButton
-              google
+              google={1}
               type="button"
               loading={this.state.loading2}
               onClick={() => {
-                this.setState({ loading2: true });
+                this.setState({ loading2: 1 });
                 signInWithGoogle();
               }}
             >

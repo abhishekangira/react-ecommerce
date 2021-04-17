@@ -1,0 +1,19 @@
+.cart-item {
+    display: flex;
+    
+    .cart-item-image {
+        width: 8rem;
+    }
+
+    .cart-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 2rem;
+        font-size: 2rem;
+
+        .cart-details-name {
+            font-weight: bold;
+        }
+    }
+}

@@ -26,7 +26,8 @@
     "eject": "react-scripts eject",
     "fire": "react-scripts build && firebase deploy",
     "firetest": "react-scripts build && firebase hosting:channel:deploy",
-    "cc": "cd src/components && mkdir $myVar && cd $myVar && touch $myVar.component.jsx && touch $myVar.scss",
+    "cc": "cd src/components && mkdir $myVar && cd $myVar && touch $myVar.component.jsx && touch $myVar.styles.scss",
+    "cp": "cd src/pages && mkdir $myVar && cd $myVar && touch $myVar.page.jsx && touch $myVar.styles.scss",
     "cr": "cd src/redux && mkdir $myVar && cd $myVar && touch $myVar.actions.js && touch $myVar.reducer.js"
   },
   "eslintConfig": {
