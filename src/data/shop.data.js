@@ -246,4 +246,13 @@ const SHOP_DATA = [
   }
 ];
 
+export const getItem = (id) => {
+  let foundItem;
+  for (let category of SHOP_DATA) {
+    foundItem = category.items.find((item) => item.id === id);
+    if (foundItem) return foundItem;
+  }
+  return "Item not found";
+};
+
 export default SHOP_DATA;

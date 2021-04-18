@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  margin: 0 .75rem 1.5rem;
+  margin: 0 0.75rem 1.5rem;
   overflow: hidden;
 
   &:hover {
@@ -27,11 +27,11 @@
   }
 
   &:first-child {
-    margin-right: .75rem;
+    margin-right: 0.75rem;
   }
 
   &:last-child {
-    margin-left: .75rem;
+    margin-left: 0.75rem;
   }
 
   .background-image {
@@ -57,6 +57,7 @@
       font-weight: bold;
       font-size: 2.2rem;
       color: #4a4a4a;
+      margin-bottom: 1rem;
     }
 
     .subtitle {

@@ -9,7 +9,9 @@ import "./App.scss";
 import HomePage from "./pages/home/home.page";
 import ShopPage from "./pages/shop/shop.page";
 import CategoryPage from "./pages/category/category.page";
-import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.page";
+import CheckoutPage from "./pages/checkout/checkout.page";
+
 import Header from "./components/header/header.component";
 import Loader from "./components/loader/loader.component";
 
@@ -49,6 +51,7 @@ class App extends React.Component {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/shop" component={ShopPage} />
             <Route exact path="/shop/:category" component={CategoryPage} />
+            <Route exact path="/checkout" component={CheckoutPage} />
             <Route path="/signin">
               {this.props.currentUser === "" ? (
                 <div className="loader">
