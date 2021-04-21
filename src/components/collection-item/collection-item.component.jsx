@@ -6,7 +6,9 @@ import "./collection-item.styles.scss";
 
 const CollectionItem = ({ id, name, price, imageUrl, addToCart }) => (
   <div className="collection-item">
-    <img className="collection-item-image" src={imageUrl} alt={name} />
+    <div className="collection-item-image">
+      <img src={imageUrl} alt={name} />
+    </div>
     <CustomButton inverted={1} onClick={() => addToCart(id)}>
       add to cart
     </CustomButton>

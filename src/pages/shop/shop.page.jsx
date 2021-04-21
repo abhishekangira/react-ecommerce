@@ -13,7 +13,7 @@ class ShopPage extends React.Component {
     const { collections } = this.state;
     return (
       <div className="fade">
-        {collections.map(({ id, ...otherCollectionProps }) => (
+        {Object.values(collections).map(({ id, ...otherCollectionProps }) => (
           <CollectionPreview key={id} totalItems={4} {...otherCollectionProps} />
         ))}
       </div>

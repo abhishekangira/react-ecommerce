@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import CartItem from "../../components/cart-item/cart-item.component";
-import { getItem } from "../../data/shop.data";
+import {getItem} from "../../data/shop.data";
 import "./checkout.styles.scss";
 
 const CheckoutPage = (props) => (

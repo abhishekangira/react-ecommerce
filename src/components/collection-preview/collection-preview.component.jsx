@@ -3,7 +3,7 @@ import CollectionItem from "../collection-item/collection-item.component";
 
 import "./collection-preview.styles.scss";
 
-const CollectionPreview = ({ title, items, routeName, totalItems, match }) => (
+const CollectionPreview = ({ title, items, routeName, totalItems }) => (
   <div className="collection-preview">
     <Link to={`/shop/${routeName}`}>
       <h1 className="title">{title.toUpperCase()}</h1>

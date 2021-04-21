@@ -8,7 +8,7 @@ import "./App.scss";
 
 import HomePage from "./pages/home/home.page";
 import ShopPage from "./pages/shop/shop.page";
-import CategoryPage from "./pages/category/category.page";
+import CategoryPage from "./pages/collection/collection.page";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.page";
 import CheckoutPage from "./pages/checkout/checkout.page";
 
