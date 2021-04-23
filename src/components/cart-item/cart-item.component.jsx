@@ -8,11 +8,9 @@ const CartItem = ({ id, qty, checkout, dispatch }) => {
   const { imageUrl, name, price } = getItem(id);
   return (
     <div className="cart-item fade">
-      <img
-        className={`${checkout ? "cart-item-image-checkout" : "cart-item-image "}`}
-        src={imageUrl}
-        alt={name}
-      />
+      <div className={`cart-item-image ${checkout ? "cart-item-image-checkout" : ""}`}>
+        <img src={imageUrl} alt={name} />
+      </div>
       <div
         className={`cart-details ${checkout ? "cart-details-checkout" : "cart-details-dropdown"}`}
       >
