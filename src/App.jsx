@@ -20,11 +20,17 @@ import { setCurrentUser } from "./redux/user/user.actions";
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
+  handleClick() {
+    window.top.postMessage("ecom", "*");
+  }
+
   componentDidMount() {
     const { setCurrentUser } = this.props;
 
+    window.addEventListener("click", this.handleClick);
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      console.log(await firestore.collection('users').get())
+      console.log(await firestore.collection("users").get());
       if (userAuth) {
         const userRef = await createUserDocument(userAuth);
         userRef.onSnapshot((snapshot) => {
@@ -41,6 +47,7 @@ class App extends React.Component {
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
+    window.removeEventListener("click", this.handleClick);
   }
 
   render() {
