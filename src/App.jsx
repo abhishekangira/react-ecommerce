@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { Switch, Route, Redirect } from "react-router-dom";
-import { auth, createUserDocument, firestore } from "./firebase/utils";
+import { auth, createUserDocument } from "./firebase/utils";
 
 import "./App.scss";
 
@@ -20,9 +20,9 @@ import { setCurrentUser } from "./redux/user/user.actions";
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
-  handleClick() {
+  handleClick = () => {
     window.top.postMessage("ecom", "*");
-  }
+  };
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
@@ -30,7 +30,6 @@ class App extends React.Component {
     window.addEventListener("click", this.handleClick);
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      console.log(await firestore.collection("users").get());
       if (userAuth) {
         const userRef = await createUserDocument(userAuth);
         userRef.onSnapshot((snapshot) => {
